@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  Tipo_de_identificacion: MyString
+  Numero_de_identificacion: 1
+  Nombre_completo: MyString
+  Fecha_de_nacimiento: 2012-01-31
+  Sexo: MyString
+  Pais: MyString
+  Departamento: MyString
+  Ciudad: MyString
+
+two:
+  Tipo_de_identificacion: MyString
+  Numero_de_identificacion: 1
+  Nombre_completo: MyString
+  Fecha_de_nacimiento: 2012-01-31
+  Sexo: MyString
+  Pais: MyString
+  Departamento: MyString
+  Ciudad: MyString

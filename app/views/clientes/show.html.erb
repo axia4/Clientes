@@ -1,0 +1,61 @@
+<p id="notice"><%= notice %></p>
+
+
+  
+
+<table>
+<table border=2 cellspacing=1 cellpadding=2 bordercolor="black" BGCOLOR=#E0F8F7>
+<tr>
+<td>
+<%= image_tag(@cliente.avatar_url)%>
+<%= @remote_avatar_url %></td> 
+</tr>
+
+<h3>Datos del Cliente</h3>
+
+
+<tr><td>
+  <b>Tipo de identificacion:</b>
+  <%= @cliente.Tipo_de_identificacion %>
+</td></tr>
+
+
+<tr><td>
+  <b>Numero de identificacion:</b>
+  <%= @cliente.Numero_de_identificacion %>
+</td></tr>
+
+<tr><td>
+  <b>Nombre completo:</b>
+  <%= @cliente.Nombre_completo %>
+</td></tr>
+
+<tr><td>
+  <b>Fecha de nacimiento:</b>
+  <%= @cliente.Fecha_de_nacimiento %>
+</td></tr>
+
+<tr><td>
+  <b>Sexo:</b>
+  <%= @cliente.Sexo %>
+</td></tr>
+
+<tr><td>
+  <b>Pais:</b>
+  <%= @cliente.Pais %>
+</td></tr>
+
+<tr><td>
+  <b>Departamento:</b>
+  <%= @cliente.Departamento %>
+</td></tr>
+
+<tr><td>
+  <b>Ciudad:</b>
+  <%= @cliente.Ciudad %>
+</td></tr>
+</table>
+
+
+<%= link_to 'Edit', edit_cliente_path(@cliente) %> |
+<%= link_to 'Back', clientes_path %>

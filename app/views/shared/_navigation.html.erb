@@ -1,0 +1,19 @@
+<% if user_signed_in? %>
+  <li>
+  <%= link_to('Cerrar Sesion', destroy_user_session_path, :method=>'delete') %>&nbsp;        
+  </li>
+<% else %>
+  <li>
+  <%= link_to('Iniciar Sesion', new_user_session_path)  %> &nbsp;
+  </li>
+<% end %>
+<% if user_signed_in? %>
+  <li>
+  <%= link_to('Editar Cuenta', edit_user_registration_path) %>&nbsp;
+  </li>
+  
+<% else %>
+  <li>
+  
+  </li>
+<% end %>

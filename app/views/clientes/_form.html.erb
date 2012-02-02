@@ -1,0 +1,100 @@
+<%= form_for(@cliente) do |f| %>
+  <% if @cliente.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@cliente.errors.count, "error") %> prohibited this cliente from being saved:</h2>
+
+      <ul>
+      <% @cliente.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <br>
+ 
+ <br>
+ 
+<table>
+<table border=2 cellspacing=2 cellpadding=3 >
+<th>Avatar del Cliente</th>
+<tr>
+ <div class="field"><td>
+      <%= f.label :avatar %><br />
+      <%= image_tag( @cliente.avatar_url ) if ( @cliente.avatar? ) %><br />
+      <%= f.file_field :avatar %><br />
+	  <br>
+      Avatar URL : <%= f.text_field :remote_avatar_url %>
+      <%= f.hidden_field :avatar_cache %>
+      <%= f.check_box :remove_avatar %> Quitar Avatar
+	  <br>
+	  <br></td>
+    </div>
+  </tr>
+ 
+
+<th>Tipo de Documento:&nbsp;</th>
+<tr>
+  <div class="field">
+        <td><br>
+		<%= f.radio_button(:Tipo_de_identificacion,"Cedula")%>
+    <%= f.label(:Tipo_de_identificacion,"Cedula")%>&nbsp; &nbsp;
+	
+	<%= f.radio_button(:Tipo_de_identificacion,"DNI")%>
+    <%= f.label(:Tipo_de_identificacion,"DNI")%>&nbsp; &nbsp;
+	
+	<%= f.radio_button(:Tipo_de_identificacion,"Tarjeta de Identidad")%>
+    <%= f.label(:Tipo_de_identificacion,"Tarjeta de Identidad")%> &nbsp; &nbsp;
+	
+	<%= f.radio_button(:Tipo_de_identificacion,"Licencia de Conduccion")%>
+    <%= f.label(:Tipo_de_identificacion,"Licencia de Conduccion")%></td>
+ </div></tr>
+  
+  <tr><td>
+  <div class="field">
+  <br>
+    <%= f.label :Numero_de_identificacion %>
+	<%= f.number_field :Numero_de_identificacion %>
+  </div></td></tr>
+  
+  <tr><th>Datos Personales</th><tr>
+  <tr><td><div class="field"><br>
+    <%= f.label :Nombre_completo %>
+    <%= f.text_field :Nombre_completo %>
+  </div></td></tr>
+ 
+
+  <tr><td>
+  <div class="field"><br>
+    <%= f.label :Fecha_de_nacimiento %>
+    <%= f.date_select :Fecha_de_nacimiento %>
+  </div></td></tr>
+  
+  <tr><td>
+  <div class="field"><br>
+  Sexo: &nbsp;
+    <%= f.radio_button(:Sexo,"Masculino")%>
+    <%= f.label(:Sexo,"Masculino")%> &nbsp;
+	 <%= f.radio_button(:Sexo,"Femenino")%>
+    <%= f.label(:Sexo,"Femenino")%>
+  </div></td></tr>
+  
+
+ 
+<tr><td><br>
+ <div class="field">
+    <%= f.label :Pais %>
+    <%= f.text_field :Pais %>
+  </div>
+  <div class="field">
+    <%= f.label :Departamento %>
+    <%= f.text_field :Departamento %>
+  </div><div class="field">
+    <%= f.label :Ciudad %>
+    <%= f.text_field :Ciudad %>
+  </div></td>
+  </tr></table>
+  
+  <div class="actions"><br>
+    <%= f.submit %>
+  </div>
+<% end %>

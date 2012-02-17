@@ -1,0 +1,16 @@
+<tr BGCOLOR=#FFFFFF>
+ <td><%= image_tag(cliente.avatar_url)%></td>
+  <td><%= cliente.Tipo_de_identificacion %></td>
+  <td><%= cliente.Numero_de_identificacion %></td>
+  <td><%= cliente.Nombre_completo %></td>
+  <td><%= cliente.Fecha_de_nacimiento %></td>
+  <td><%= cliente.Sexo %></td>
+  <td><%= cliente.Pais %></td>
+  <td><%= cliente.Departamento %></td>
+  <td><%= cliente.Ciudad %></td>
+  <td><a href="#" onClick="return( showUrlInDialog( '/clientes/<%= cliente.id %>' ) );">Ver</a></td>
+  <td>  <%= link_to( 'ver', cliente_path(cliente.id), { :onClick => "return( showUrlInDialog( '#{cliente_path(cliente.id)}' ) );" } ) %> </td>
+    <td> <%= link_to( 'Editar', edit_cliente_path(cliente.id), { :onClick => "return( showClientForm( 'edit', '#{edit_cliente_path(cliente.id)}' ) );" } ) %> 
+  </td>
+  <td><%= link_to 'Eliminar', cliente, confirm: 'esta seguro?', method: :delete, remote:true  %></td>
+</tr>

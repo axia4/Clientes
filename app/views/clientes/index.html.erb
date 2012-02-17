@@ -1,49 +1,35 @@
+<p id="notice"><%= notice %></p>
+
 <h2>Lista de Clientes</h2>
 <br>
-
-  
-
 <br>
-<table>
-  <tr> 
-<table border=2 cellspacing=1 cellpadding=2 bordercolor="black" BGCOLOR=#E0F8F7>  
-    <tr>
-	<th>Avatar &nbsp</th> 
-	<th>Tipo de <br>identificacion &nbsp</th> 
-    <th>Numero de <br>identificacion &nbsp</th>
-    <th>Nombre completo</th>
-    <th>Fecha de <br>nacimiento &nbsp</th>  
-    <th>Sexo &nbsp</th>
-    <th>Pais &nbsp</th>
-    <th>Departamento &nbsp</th>
-    <th>Ciudad</th>
-	<th></th>
-	<th></th>
-	<th></th>
-      </tr>
-	  <tr>
-	  </tr>
+	<table>
+	 
+	<table border=2 cellspacing=1 cellpadding=2 bordercolor="black" BGCOLOR=#E0F8F7 id="client_list">  
+    	<tr>
+		<th>Avatar &nbsp</th> 
+		<th>Tipo de <br>identificacion &nbsp</th> 
+    		<th>Numero de <br>identificacion &nbsp</th>
+    		<th>Nombre completo</th>
+    		<th>Fecha de <br>nacimiento &nbsp</th>  
+	    	<th>Sexo &nbsp</th>
+		<th>Pais &nbsp</th>
+	    	<th>Departamento &nbsp</th>
+    		<th>Ciudad</th>
+		<th></th>
+		<th></th>
+		<th></th>
+      	</tr>
 
-<% @clientes.each do |cliente| %>
-  <tr>
-  <tr BGCOLOR=#FFFFFF>
-   <td><%= image_tag(cliente.avatar_url)%></td>
-    <td><%= cliente.Tipo_de_identificacion %></td>
-    <td><%= cliente.Numero_de_identificacion %></td>
-    <td><%= cliente.Nombre_completo %></td>
-    <td><%= cliente.Fecha_de_nacimiento %></td>
-    <td><%= cliente.Sexo %></td>
-    <td><%= cliente.Pais %></td>
-    <td><%= cliente.Departamento %></td>
-    <td><%= cliente.Ciudad %></td>
-    <td><%= link_to 'Ver', cliente %></td>
-    <td><%= link_to 'Editar', edit_cliente_path(cliente) %></td>
-    <td><%= link_to 'Eliminar', cliente, confirm: 'esta seguro?', method: :delete %></td>
-  </tr>
-<% end %>
+<%= render( @clientes ) %>
+
 </table>
+
+
 
 <br />
 <h1>
-<%= link_to 'Nuevo Cliente', new_cliente_path %>
-<h1>
+<a href="javascript:showUrlInDialog('clientes/new')">Nuevo Cliente</a> |
+<a href="#" onClick="return( showClientForm( 'new', 'clientes/new') );">Nuevo Cliente</a>
+</h1>
+

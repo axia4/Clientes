@@ -12,9 +12,7 @@ class Cliente
   field :Pais, :type => String
   field :Departamento, :type => String
   field :Ciudad, :type => String
-  validates_presence_of :Numero_de_identificacion
-   validates_presence_of :Nombre_completo
-   validates_presence_of :Ciudad
+
    
    
  

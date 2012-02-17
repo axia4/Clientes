@@ -1,4 +1,6 @@
 class ClientesController < ApplicationController
+  before_filter :authenticate_user!
+  
   # GET /clientes
   # GET /clientes.json
   def index
@@ -19,8 +21,10 @@ class ClientesController < ApplicationController
     @cliente = Cliente.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @cliente }
+      format.html   {# show.html.erb
+       render({ :layout => false } ) if ( request.xhr? )
+       }
+       format.json { render json: @cliente }
     end
   end
 
@@ -30,7 +34,9 @@ class ClientesController < ApplicationController
     @cliente = Cliente.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html { # new.html.erb
+        render( { :layout => false } ) if ( request.xhr? )
+      }
       format.json { render json: @cliente }
     end
   end
@@ -38,6 +44,12 @@ class ClientesController < ApplicationController
   # GET /clientes/1/edit
   def edit
     @cliente = Cliente.find(params[:id])
+    respond_to do|format|
+     format.html   {
+       render({ :layout => false } ) 
+
+       }
+       end
   end
 
   # POST /clientes
@@ -47,7 +59,14 @@ class ClientesController < ApplicationController
 
     respond_to do |format|
       if @cliente.save
-        format.html { redirect_to @cliente, notice: 'Cliente was successfully created.' }
+        format.html {
+          if ( request.xhr? )
+            #render json: @cliente, status: :created, location: @cliente
+            render( { :partial => 'clientes/cliente', :object => @cliente, :layout => false } )
+          else
+            redirect_to @cliente, notice: 'Cliente was successfully created.'
+          end
+        }
         format.json { render json: @cliente, status: :created, location: @cliente }
       else
         format.html { render action: "new" }
@@ -64,6 +83,7 @@ class ClientesController < ApplicationController
     respond_to do |format|
       if @cliente.update_attributes(params[:cliente])
         format.html { redirect_to @cliente, notice: 'Cliente was successfully updated.' }
+        
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -79,8 +99,12 @@ class ClientesController < ApplicationController
     @cliente.destroy
 
     respond_to do |format|
+      if (request.xhr?)
+        format.json { head :no_content }
+        else
       format.html { redirect_to clientes_url }
       format.json { head :no_content }
+      end
     end
   end
 end

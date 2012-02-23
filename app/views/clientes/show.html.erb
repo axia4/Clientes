@@ -54,6 +54,10 @@
 </td></tr>
 </table>
 
-
-<%= link_to 'Edit', edit_cliente_path(@cliente) %> |
-<%= link_to 'Back', clientes_path %>
+<%- if ( request.xhr? ) -%>
+  <td> <%= link_to( 'Editar', edit_cliente_path(@cliente.id), { :onClick => "jQuery( '#theUrlDialog' ).dialog( 'close' );return( showClientForm( 'edit', '#{edit_cliente_path(@cliente.id)}', '#{@cliente.id}' ) );" } ) %>  |
+  <%= link_to 'Cerrar', '#', { :onClick => "jQuery( '#theUrlDialog' ).dialog( 'close' );return( false );" } %>
+<%- else -%>
+  <%= link_to 'Edit', edit_cliente_path(@cliente) %> |
+  <%= link_to 'Back', clientes_path %>
+<%- end -%>

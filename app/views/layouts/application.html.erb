@@ -18,25 +18,34 @@
     <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
   <%- end -%>
 <%= yield %>
+<br />
+<div id="parameters">
+  Raw Params = <%= params.inspect.to_s %><br /><br />
+  <% params.each do |key, value| %>
+    <%= "params[#{key}] = #{value}" %><br />
+  <% end %>
+</div>
   <%= javascript_include_tag "application" %>
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js" type="text/javascript"></script>
 <script type="text/javascript" src="http://jzaefferer.github.com/jquery-validation/jquery.validate.js"></script>
+<%= yield( :bottom ) %>
 <script>
   //<![CDATA[
     jQuery( document ).ready( function( $ ) {
       <%- if ( controller_name == 'clientes' ) -%>
         <%- if ( action_name == 'new' ) -%>
-          validateClientForm();
+          validateClientForm( 'new', 0, false );
         <%- elsif ( action_name == 'index' ) -%>
           var the_table = $( 'table#client_list' );
-          the_table.find( 'a[data-method="delete"]' ).bind( 'ajax:success', {}, function( eventObject, data, status, xhr ) {
+          the_table.find( 'a[data-method="delete"]' ).live( 'ajax:success', {}, function( eventObject, data, status, xhr ) {
             jQuery( this ).parents( 'tr' ).remove();
             alert( 'success' );
-          } ).bind( 'ajax:complete', {}, function( eventObject, xhr, status ) {
+          } ).live( 'ajax:complete', {}, function( eventObject, xhr, status ) {
             alert( 'complete' );
           } );
         <%- end -%>
       <%- end -%>
+      <%= yield( :document_ready ) %>
     } );
   //]]>
 </script>

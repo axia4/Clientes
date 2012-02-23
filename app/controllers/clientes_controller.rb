@@ -4,15 +4,35 @@ class ClientesController < ApplicationController
   # GET /clientes
   # GET /clientes.json
   def index
-
-    @clientes = Cliente.all
-
+    @per_page = 2
+    params[:page] = 1 if ( params[:page].to_i < 1 )
+    @page = ( params[:page].to_i > 0 ) ? params[:page].to_i - 1 : 0
+    @skip = ( @per_page * @page )
+    
+    if ( params[:search] )
+      #@clientes = Cliente.find(:all, {:conditions => ['Nombre_completo LIKE ?', "%#{params[:search]}%" ]} )
+     @clientes = Cliente.search( params[:search] ).limit( @per_page ).skip( @skip )
+    elsif ( params[:column] )
+      @clientes = Cliente.sort( params[:column], params[:sort] ).limit( @per_page ).skip( @skip )
+    else
+      @clientes = Cliente.all.limit( @per_page ).skip( @skip )
+    end
+    
+    @num_of_pages = ( @per_page.to_i > 0 ) ? ( @clientes.size / @per_page.to_f ).ceil : 1
+    
     respond_to do |format|
-      format.html # index.html.erb
+      format.html {# index.html.erb
+        if ( request.xhr? )
+          render( { :partial => 'clientes/list', :locals => { :clientes => @clientes }, :layout => false } )
+          return
+        end
+      }
+      format.js {# index.js.erb
+        render( :index )
+      }
       format.json { render json: @clientes }
     end
-	
-  end
+end
 
   
   # GET /clientes/1
@@ -64,7 +84,7 @@ class ClientesController < ApplicationController
             #render json: @cliente, status: :created, location: @cliente
             render( { :partial => 'clientes/cliente', :object => @cliente, :layout => false } )
           else
-            redirect_to @cliente, notice: 'Cliente was successfully created.'
+            #redirect_to @cliente, notice: 'Cliente was successfully created.'
           end
         }
         format.json { render json: @cliente, status: :created, location: @cliente }
@@ -82,7 +102,13 @@ class ClientesController < ApplicationController
 
     respond_to do |format|
       if @cliente.update_attributes(params[:cliente])
-        format.html { redirect_to @cliente, notice: 'Cliente was successfully updated.' }
+        format.html {
+          if ( request.xhr? )
+            render( { :partial => 'clientes/cliente', :object => @cliente, :layout => false } )
+          else
+            redirect_to @cliente, notice: 'Cliente was successfully updated.'
+          end
+        }
         
         format.json { head :no_content }
       else

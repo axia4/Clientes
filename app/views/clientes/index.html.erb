@@ -1,35 +1,32 @@
 <p id="notice"><%= notice %></p>
 
+
+<%= form_tag clientes_path, :method => 'get', :remote =>true do %>
+  <p>
+    <%= text_field_tag :search , params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+<% end %>
+
+
+<h2><a href="#" onClick="return( Actualizar( ) );" >Actualizar</a></h2>
+
+
+
 <h2>Lista de Clientes</h2>
 <br>
 <br>
-	<table>
-	 
-	<table border=2 cellspacing=1 cellpadding=2 bordercolor="black" BGCOLOR=#E0F8F7 id="client_list">  
-    	<tr>
-		<th>Avatar &nbsp</th> 
-		<th>Tipo de <br>identificacion &nbsp</th> 
-    		<th>Numero de <br>identificacion &nbsp</th>
-    		<th>Nombre completo</th>
-    		<th>Fecha de <br>nacimiento &nbsp</th>  
-	    	<th>Sexo &nbsp</th>
-		<th>Pais &nbsp</th>
-	    	<th>Departamento &nbsp</th>
-    		<th>Ciudad</th>
-		<th></th>
-		<th></th>
-		<th></th>
-      	</tr>
 
-<%= render( @clientes ) %>
-
+<table border=2 cellspacing=1 cellpadding=2 bordercolor="black" BGCOLOR=#E0F8F7 id="client_list">
+  <%= render( { :partial => 'clientes/list', :locals => { :clientes => @clientes } } ) %>
 </table>
 
-
+<%= render ( { :partial => 'clientes/paginador' } ) %>
 
 <br />
 <h1>
-<a href="javascript:showUrlInDialog('clientes/new')">Nuevo Cliente</a> |
+<!--<a href="javascript:showUrlInDialog('clientes/new')">Nuevo Cliente</a> |//-->
 <a href="#" onClick="return( showClientForm( 'new', 'clientes/new') );">Nuevo Cliente</a>
 </h1>
+
 

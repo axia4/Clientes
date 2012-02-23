@@ -13,14 +13,19 @@ class Cliente
   field :Departamento, :type => String
   field :Ciudad, :type => String
 
-   
-   
- 
-	
 
- 
+def self.sort( column, sort = :asc )
+    if ( column )
+    order_by([column.to_sym, sort.to_sym ] )
+    end 
+  end
 
-   
-   
-   
+
+  def self.search(search)
+    if search
+    regexp = /#{search}/
+    where(Nombre_completo: regexp )
+    end 
+  end
+
 end

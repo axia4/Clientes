@@ -1,6 +1,10 @@
 <h1>Editing cliente</h1>
 
 <%= render 'form' %>
-
-<%= link_to 'Show', @cliente %> |
-<%= link_to 'Back', clientes_path %>
+<%- if ( request.xhr? ) -%>
+  <%= link_to( 'Show', cliente_path(@cliente.id), { :onClick => "jQuery( '#edit_client_form' ).dialog( 'close' );return( showUrlInDialog( '#{cliente_path(@cliente.id)}' ) );" } ) %> |
+  <%= link_to 'Close', '#', { :onClick => "jQuery( '#edit_client_form' ).dialog( 'close' );return( false );" } %>
+<%- else -%>
+  <%= link_to 'Show', @cliente %> |
+  <%= link_to 'Back', clientes_path %>
+<%- end -%>

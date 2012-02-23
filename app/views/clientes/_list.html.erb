@@ -1,0 +1,73 @@
+<%
+  def header( header_name, column_name )
+    to_return = ""
+       
+    if ( params[:column] == column_name ) 
+      if ( params[:sort] == 'asc' ) 
+        to_return+="<a href=\"#\" onClick=\"return( Ordenar( '#{column_name}', 'desc' ) );\" >#{header_name}</a>"
+        to_return+="<a href=\"#\" onClick=\"return( Ordenar( '#{column_name}', 'desc' ) );\" ><img src=\"assets/arrow_up.png\" border=\"1\" /></a>"
+      else 
+        to_return+="<a href=\"#\" onClick=\"return( Ordenar( '#{column_name}', 'asc' ) );\" >#{header_name}</a>"
+        to_return+="<a href=\"#\" onClick=\"return( Ordenar( '#{column_name}', 'asc' ) );\" ><img src=\"assets/arrow_down.png\" border=\"1\" /></a>"
+      end 
+    else 
+      to_return+="<a href=\"#\" onClick=\"return( Ordenar( '#{column_name}', 'asc' ) );\" >#{header_name}</a>"
+    end     
+    return( to_return.html_safe  )
+  end
+%>
+
+<tr>
+    <th>
+     <%= header( 'Avatar', 'Avatar' ) %>
+    </th>
+ 
+    <th>
+    <%=header( 'Tipo de Identificacion','Tipo_de_identificacion' ) %> 
+    <!--
+    <%= form_tag clientes_path, :method => 'get', :remote =>true do %>
+      <%= text_field_tag :column , 'Tipo_de_identificacion' %>
+     <%= text_field_tag :sort , 'asc' %>
+     <%= submit_tag " Tipo de Identificacion", :name => nil %>
+    <% end %>
+    //-->
+    </th>
+  
+    <th>
+      <%= header( 'Numero de identificacion', 'Numero_de_identificacion' ) %>
+    </th>
+    
+    <th>
+      <%= header( 'Nombre completo', 'Nombre_completo' ) %>
+    </th>
+    
+    <th>
+     <%= header( 'Fecha de nacimiento', 'Fecha_de_nacimiento' ) %>
+    </th>
+    
+    <th>
+      <%= header( 'Sexo', 'Sexo' ) %>
+    </th>
+
+    <th>
+      <%= header( 'Pais', 'Pais' ) %>
+    </th>
+    
+    <th>
+      <%= header( 'Departamento', 'Departamento' ) %>
+    </th>
+    
+    <th>
+      <%= header( 'Ciudad', 'Ciudad' ) %>
+    </th>
+   
+
+    <th colspan="3">
+      <%= params[:column] %><br />
+      <%= params[:sort] %>
+    </th>
+</tr>
+
+<%= render( clientes ) %>
+
+

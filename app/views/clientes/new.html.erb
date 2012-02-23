@@ -3,5 +3,8 @@
 
 
 <%= render( { :partial => 'clientes/form' } ) %>
-
-<%= link_to 'Back', clientes_path %>
+<%- if ( request.xhr? ) -%>
+  <%= link_to 'Close', '#', { :onClick => "jQuery( '#new_client_form' ).dialog( 'close' );return( false );" } %>
+<%- else -%>
+  <%= link_to 'Back', clientes_path %>
+<%- end -%>

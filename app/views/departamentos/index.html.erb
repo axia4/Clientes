@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+
+<%= form_tag departamentos_path, :method => 'get', :remote =>true do %>
+  <p>
+    <%= text_field_tag :search , params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+<% end %>
+
+<h2><a href="#" onClick="return( actualizarDepartamento( ) );" >Actualizar</a></h2>
+
+
+<h1>Listing departamentos</h1>
+
+<table border=2 cellspacing=1 cellpadding=2 bordercolor="black" BGCOLOR=#E0F8F7 id="departament_list">
+ <%= render( { :partial => 'departamentos/list', :locals => { :departamentos => @departamentos } } ) %>
+
+</table>
+<br />
+
+<%= render ( { :partial => 'departamentos/paginador' } ) %>
+<h2>
+<a href="#" onClick="return( showDepartamentForm( 'new', 'departamentos/new') );">Nuevo Departamento</a>
+</h2>

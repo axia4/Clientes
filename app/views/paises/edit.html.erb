@@ -1,0 +1,10 @@
+<h1>Editing paise</h1>
+
+<%= render 'form' %>
+<%- if ( request.xhr? ) -%>
+  <%= link_to( 'Show', paise_path(@paise.id), { :onClick => "jQuery( '#edit_paise_form' ).dialog( 'close' );return( showUrlInDialog( '#{paise_path(@paise.id)}' ) );" } ) %> |
+  <%= link_to 'Close', '#', { :onClick => "jQuery( '#edit_paise_form' ).dialog( 'close' );return( false );" } %>
+<%- else -%>
+<%= link_to 'Show', @paise %> |
+<%= link_to 'Back', paises_path %>
+<%-end-%>

@@ -4,7 +4,7 @@ class ClientesController < ApplicationController
   # GET /clientes
   # GET /clientes.json
   def index
-    @per_page = 2
+    @per_page = 5
     params[:page] = 1 if ( params[:page].to_i < 1 )
     @page = ( params[:page].to_i > 0 ) ? params[:page].to_i - 1 : 0
     @skip = ( @per_page * @page )

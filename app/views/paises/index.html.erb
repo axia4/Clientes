@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing paises</h1>
+
+
+
+<%= form_tag paises_path, :method => 'get', :remote =>true do %>
+  <p>
+    <%= text_field_tag :search , params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+<% end %>
+
+<h2><a href="#" onClick="return( actualizarPais( ) );" >Actualizar</a></h2>
+
+
+<table border=2 cellspacing=1 cellpadding=2 bordercolor="black" BGCOLOR=#E0F8F7  id="paise_list">
+<%= render( { :partial => 'paises/list', :locals => { :paises => @paises } } ) %>
+ 
+</table>
+
+<%= render ( { :partial => 'paises/paginador' } ) %>
+
+<br />
+
+<br />
+<h1>
+<a href="#" onClick="return( showPaisForm( 'new', 'paises/new') );">Nuevo pais 2</a>
+</h1>

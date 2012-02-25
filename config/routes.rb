@@ -1,6 +1,14 @@
 Aplicacion::Application.routes.draw do
   
 
+  resources :ciudades
+
+  resources :departamentos
+
+  resources :paises
+
+  resources :pais
+
   resources :clientes
 
 root :to => "home#index"

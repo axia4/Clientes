@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Nombre:</b>
+  <%= @departamento.nombre %>
+</p>
+
+<p>
+  <b>Codigo:</b>
+  <%= @departamento.codigo %>
+</p>
+
+<p>
+  <b>Pais codigo:</b>
+  <%= @departamento.pais_codigo %>
+</p>
+
+
+<%- if ( request.xhr? ) -%>
+  <td> <%= link_to( 'Editar', edit_departamento_path(@departamento.id), { :onClick => "jQuery( '#theUrlDialog' ).dialog( 'close' );return( showDepartamentForm( 'edit', '#{edit_departamento_path(@departamento.id)}', '#{@departamento.id}' ) );" } ) %>  |
+  <%= link_to 'Cerrar', '#', { :onClick => "jQuery( '#theUrlDialog' ).dialog( 'close' );return( false );" } %>
+<%- else -%>
+  <%= link_to 'Edit', edit_departamento_path(@departamento) %> |
+  <%= link_to 'Back', departamentos_path %>
+<%- end -%>

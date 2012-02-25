@@ -1,0 +1,22 @@
+<div id="departamentpaginator">
+  <%- if ( params[:page].to_i > 1 ) -%>
+    <%= link_to( '<< First', departamento_path ) %>
+    <%= link_to( '< Back', departamento_path( { :page => ( params[:page].to_i - 1 ) } ) ) %>
+  <%- end -%>
+  <%- 1.upto( @num_of_pages ) do |i| -%>
+    <%= link_to( i, departamento_path( { :page => i } ) ) %>
+  <%- end -%>
+  <%- if ( params[:page].to_i < @num_of_pages ) -%>
+    <%= link_to( 'Next >', departamento_path( { :page => ( params[:page].to_i + 1 ) } ) ) %>
+    <%= link_to( 'Last >>', departamento_path( { :page => @num_of_pages } ) ) %>
+  <%- end -%>
+</div>
+<%- content_for( :document_ready ) do -%>
+  $( '#departamentpaginator a' ).live( 'click', {}, function( eventObject ) {
+    //$( '#departament_list' ).load( this.href, function( responseText, textStatus, XMLHttpRequest ) {
+    $.getScript( this.href, function( script, textStatus, jqXHR ) {
+      alert( 'Datos actualizados' );
+    } );
+    return( false );
+  } );
+<%- end -%>

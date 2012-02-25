@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+    <tr>
+      <b>Nombre:</b>
+      <%= @paise.nombre %>
+    </tr>
+    
+    <tr>
+      <b>Codigo:</b>
+      <%= @paise.codigo %>  
+    </tr>
+
+
+<%- if( request.xhr?)-%>
+<%= link_to( 'Editar', edit_paise_path(@paise.id), { :onClick => "jQuery( '#theUrlDialog' ).dialog( 'close' );return( showPaisForm( 'edit', '#{edit_paise_path(@paise.id)}', '#{@paise.id}' ) );" } ) %>  |
+  <%= link_to 'Cerrar', '#', { :onClick => "jQuery( '#theUrlDialog' ).dialog( 'close' );return( false );" } %>
+  <%- else -%>
+<%= link_to 'Edit', edit_paise_path(@paise) %> |
+<%= link_to 'Back', paises_path %>
+<%- end -%>

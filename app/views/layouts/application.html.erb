@@ -45,6 +45,57 @@
           } );
         <%- end -%>
       <%- end -%>
+      
+            
+      <%- if ( controller_name == 'paises' ) -%>
+        <%- if ( action_name == 'new' ) -%>
+          validatePaisForm( 'new', 0, false );
+        <%- elsif ( action_name == 'index' ) -%>
+          var the_table = $( 'table#paise_list' );
+          the_table.find( 'a[data-method="delete"]' ).live( 'ajax:success', {}, function( eventObject, data, status, xhr ) {
+            jQuery( this ).parents( 'tr' ).remove();
+            alert( 'success' );
+          } ).live( 'ajax:complete', {}, function( eventObject, xhr, status ) {
+            alert( 'complete' );
+          } );
+        <%- end -%>
+      <%- end -%>
+      
+       <%- if ( controller_name == 'departamentos' ) -%>
+        <%- if ( action_name == 'new' ) -%>
+          validateDepartamentForm( 'new', 0, false );
+        <%- elsif ( action_name == 'index' ) -%>
+          var the_table = $( 'table#departament_list' );
+          the_table.find( 'a[data-method="delete"]' ).live( 'ajax:success', {}, function( eventObject, data, status, xhr ) {
+            jQuery( this ).parents( 'tr' ).remove();
+            alert( 'success' );
+          } ).live( 'ajax:complete', {}, function( eventObject, xhr, status ) {
+            alert( 'complete' );
+          } );
+        <%- end -%>
+      <%- end -%>
+      
+      
+      
+       <%- if ( controller_name == 'ciudades' ) -%>
+        <%- if ( action_name == 'new' ) -%>
+          validateCiudadForm( 'new', 0, false );
+        <%- elsif ( action_name == 'index' ) -%>
+          var the_table = $( 'table#ciudad_list' );
+          the_table.find( 'a[data-method="delete"]' ).live( 'ajax:success', {}, function( eventObject, data, status, xhr ) {
+            jQuery( this ).parents( 'tr' ).remove();
+            alert( 'success' );
+          } ).live( 'ajax:complete', {}, function( eventObject, xhr, status ) {
+            alert( 'complete' );
+          } );
+        <%- end -%>
+      <%- end -%>
+      
+      
+
+      
+   
+      
       <%= yield( :document_ready ) %>
     } );
   //]]>

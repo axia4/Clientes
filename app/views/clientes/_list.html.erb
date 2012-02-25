@@ -4,14 +4,14 @@
        
     if ( params[:column] == column_name ) 
       if ( params[:sort] == 'asc' ) 
-        to_return+="<a href=\"#\" onClick=\"return( Ordenar( '#{column_name}', 'desc' ) );\" >#{header_name}</a>"
-        to_return+="<a href=\"#\" onClick=\"return( Ordenar( '#{column_name}', 'desc' ) );\" ><img src=\"assets/arrow_up.png\" border=\"1\" /></a>"
+        to_return+="<a href=\"#\" onClick=\"return( ordenarCliente( '#{column_name}', 'desc' ) );\" >#{header_name}</a>"
+        to_return+="<a href=\"#\" onClick=\"return( ordenarCliente( '#{column_name}', 'desc' ) );\" ><img src=\"assets/arrow_up.png\" border=\"1\" /></a>"
       else 
-        to_return+="<a href=\"#\" onClick=\"return( Ordenar( '#{column_name}', 'asc' ) );\" >#{header_name}</a>"
-        to_return+="<a href=\"#\" onClick=\"return( Ordenar( '#{column_name}', 'asc' ) );\" ><img src=\"assets/arrow_down.png\" border=\"1\" /></a>"
+        to_return+="<a href=\"#\" onClick=\"return( ordenarCliente( '#{column_name}', 'asc' ) );\" >#{header_name}</a>"
+        to_return+="<a href=\"#\" onClick=\"return( ordenarCliente( '#{column_name}', 'asc' ) );\" ><img src=\"assets/arrow_down.png\" border=\"1\" /></a>"
       end 
     else 
-      to_return+="<a href=\"#\" onClick=\"return( Ordenar( '#{column_name}', 'asc' ) );\" >#{header_name}</a>"
+      to_return+="<a href=\"#\" onClick=\"return( ordenarCliente( '#{column_name}', 'asc' ) );\" >#{header_name}</a>"
     end     
     return( to_return.html_safe  )
   end

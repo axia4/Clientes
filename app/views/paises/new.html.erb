@@ -1,0 +1,9 @@
+<h1>New pais</h1>
+
+
+<%= render( { :partial => 'paises/form' } ) %>
+<%- if ( request.xhr? ) -%>
+  <%= link_to 'Close', '#', { :onClick => "jQuery( '#new_paise_form' ).dialog( 'close' );return( false );" } %>
+<%- else -%>
+  <%= link_to 'Back', paises_path %>
+<%- end -%>

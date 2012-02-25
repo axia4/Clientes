@@ -12,7 +12,7 @@
   <%- end -%>
 </div>
 <%- content_for( :document_ready ) do -%>
-  $( '#clientpaginator a' ).live.html( "<%= escape_javascript( render( { :partial => 'clientes/list', :locals => { :clientes => @clientes } } ) ) %>");( 'click', {}, function( eventObject ) {
+  $( '#clientpaginator a' ).live( 'click', {}, function( eventObject ) {
     //$( '#client_list' ).load( this.href, function( responseText, textStatus, XMLHttpRequest ) {
     $.getScript( this.href, function( script, textStatus, jqXHR ) {
       alert( 'Datos actualizados' );

@@ -1,0 +1,3 @@
+alert("xxxx");
+jQuery( "#ciudad_list" ).html( "<%= escape_javascript( render( { :partial => 'ciudades/list', :locals => { :ciudades => @ciudades } } ) ) %>");
+jQuery( '#ciudadpaginator' ).html( "<%= escape_javascript( render( { :partial => 'ciudades/paginador' } ) ) %>");

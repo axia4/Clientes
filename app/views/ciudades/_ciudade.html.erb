@@ -1,0 +1,9 @@
+<tr BGCOLOR=#FFFFFF id="ciudade_<%= ciudade.id %>">
+ <td><%= ciudade.nombre %></td>
+    <td><%= ciudade.codigo %></td>
+    <td><%= ciudade.departamento_codigo %></td>
+<td>  <%= link_to( 'ver', ciudade_path(ciudade.id), { :onClick => "return( showUrlInDialog( '#{ciudade_path(ciudade.id)}' ) );" } ) %> </td>
+ <td> <%= link_to( 'Editar', edit_ciudade_path(ciudade.id), { :onClick => "return( showCiudadForm( 'edit', '#{edit_ciudade_path(ciudade.id)}', '#{ciudade.id}' ) );" } ) %> 
+  </td>
+  <td><%= link_to 'Eliminar', ciudade, confirm: 'esta seguro?', method: :delete, remote:true  %></td>
+</tr>

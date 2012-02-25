@@ -1,0 +1,9 @@
+ <tr BGCOLOR=#FFFFFF id="departamento_<%= departamento.id %>">
+    <td><%= departamento.nombre %></td>
+    <td><%= departamento.codigo %></td>
+    <td><%= departamento.pais_codigo %></td>
+  <td>  <%= link_to( 'ver', departamento_path(departamento.id), { :onClick => "return( showUrlInDialog( '#{departamento_path(departamento.id)}' ) );" } ) %> </td>
+    <td> <%= link_to( 'Editar', edit_departamento_path(departamento.id), { :onClick => "return( showDepartamentForm( 'edit', '#{edit_departamento_path(departamento.id)}', '#{departamento.id}' ) );" } ) %> 
+  <td><%= link_to 'Eliminar', departamento, confirm: 'esta seguro?', method: :delete, remote:true  %></td>
+
+</tr>

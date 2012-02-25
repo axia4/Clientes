@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Nombre:</b>
+  <%= @ciudade.nombre %>
+</p>
+
+<p>
+  <b>Codigo:</b>
+  <%= @ciudade.codigo %>
+</p>
+
+<p>
+  <b>Departamento codigo:</b>
+  <%= @ciudade.departamento_codigo %>
+</p>
+
+<%- if ( request.xhr? ) -%>
+  <td> <%= link_to( 'Editar', edit_ciudade_path(@ciudade.id), { :onClick => "jQuery( '#theUrlDialog' ).dialog( 'close' );return( showCiudadForm( 'edit', '#{edit_ciudade_path(@ciudade.id)}', '#{@ciudade.id}' ) );" } ) %>  |
+  <%= link_to 'Cerrar', '#', { :onClick => "jQuery( '#theUrlDialog' ).dialog( 'close' );return( false );" } %>
+<%- else -%>
+<%= link_to 'Edit', edit_ciudade_path(@ciudade) %> |
+<%= link_to 'Back', ciudades_path %>
+<%- end -%>

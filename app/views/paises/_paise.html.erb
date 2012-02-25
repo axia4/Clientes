@@ -1,0 +1,7 @@
+<tr BGCOLOR=#FFFFFF id="paise_<%= paise.id %>">
+    <td><%= paise.nombre %></td>
+    <td><%= paise.codigo %></td>
+     <td>  <%= link_to( 'ver', paise_path(paise.id), { :onClick => "return( showUrlInDialog( '#{paise_path(paise.id)}' ) );" } ) %> </td>
+<td> <%= link_to( 'Editar', edit_paise_path(paise.id), { :onClick => "return( showPaisForm( 'edit', '#{edit_paise_path(paise.id)}', '#{paise.id}' ) );" } ) %> </td>
+    <td><%= link_to 'Eliminar', paise, confirm: 'Are you sure?', method: :delete , remote: true%></td>
+  </tr>

@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+
+
+<%= form_tag ciudades_path, :method => 'get', :remote =>true do %>
+  <p>
+    <%= text_field_tag :search , params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+<% end %>
+
+<a href="#" onClick="return( actualizarCiudad( ) );" >Actualizar</a></h2>
+
+
+<h1>Listing ciudades</h1>
+
+<br>
+<br>
+
+
+<table border=2 cellspacing=1 cellpadding=2 bordercolor="black" BGCOLOR=#E0F8F7 id="ciudad_list">
+<%= render( { :partial => 'ciudades/list', :locals => { :ciudades => @ciudades } } ) %>
+</table>
+
+<%= render ( { :partial => 'ciudades/paginador' } ) %>
+
+<br />
+<h1>
+<a href="#" onClick="return( showCiudadForm( 'new', 'ciudades/new') );">Nueva Ciudad</a>
+</h1>
+
